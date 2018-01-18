@@ -1,0 +1,29 @@
+.container-wrap {
+  position: absolute;
+  top: 1.9rem;
+  background-color: #fff;
+  width: 100%;
+
+}
+
+// app 头部icon布局
+.icon-header{
+    display:flex;
+    display:-webkit-flex;
+    align-items:center;
+    .icon-l,
+    .icon-r{
+      font-size:.6rem;
+      padding:5px;
+    }
+  }
+
+  .full-page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    padding-top: .5rem;
+  }
