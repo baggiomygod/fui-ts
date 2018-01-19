@@ -16,7 +16,10 @@ export default class Close extends Vue {
 
   // methods
   back(): void{
-    // this.$router.go(-1);
+    console.log(this['$router']);
+    // 为什么 this.$router报错：Property '$router' does not exist on type 'Close'
+    // this['$router'].go(-1);
+    this.$router.go(-1);
   }
 }
 </script>

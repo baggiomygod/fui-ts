@@ -16,3 +16,4 @@ const init = new Vue({
   router,
   render: h => h(App)
 })
+router.push('/ts-list')

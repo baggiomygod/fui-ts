@@ -26,8 +26,7 @@ export default class ScrollMenus extends Vue{
   shwoAllMenus: boolean = false
 
   // methods
-  changeHeader(val: string){
-    console.log(this);
+  changeHeader(val: string): void{
     this.$emit('change-title', val)
   }
   changeNav(){

@@ -1,5 +1,5 @@
 <template>
-<div class="data-wrap full-page">
+<div class="data-wrap list-page fui-transitions">
   <f-close :close-type="'header'"></f-close>
   <ul class="ts-list">
     <li>Provide,Inject:{{users}}</li>
@@ -14,9 +14,7 @@
     <li>泛型数组genericArr: {{genericArr}}</li>
     <li>anyArr : {{anyArr}}</li>
   </ul>
-
   <button @click="changeData" class="data-btn">changeData</button>
-
 </div>
 </template>
 <script lang="ts">
@@ -39,7 +37,7 @@ export default class DataType extends Vue {
   // 数组
   numArr: number[] = [1, 2, 3] // 数字类型的数组
   mixArr: (number | string)[] =['s', 1, 2] // 混合类型的数组
-  genericArr: Array<number> = [1,2,3,4,5]
+  genericArr: Array<number> = [1,2,3,4,5] // 数组泛型 Array<元素类型>
   anyArr: any[] = [1, 's', {a: 123}]
 
   // computed
@@ -75,22 +73,7 @@ export default class DataType extends Vue {
 }
 </script>
 <style lang="scss">
+@import '../ts.scss';
 .data-wrap{
-  .ts-list{
-    margin:1rem auto 0 auto;
-    width:96%;
-    li{
-      padding:.3rem;
-      border-botton:1px solid #e2e2e2;
-      box-shadow: 0px 1px 2px #e2e2e2;
-    }
-  }
-  .data-btn{
-    // width:2rem;
-    height:.5rem;
-    background-color: #e2e2e2;
-    padding: 3px;
-    font-size:.3rem;
-  }
 }
 </style>

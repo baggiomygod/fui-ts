@@ -1,14 +1,9 @@
 <template>
-  <div class="ts-wrap container-wrap">
-    <ul class="ts-list">
+  <div class="fui-wrap container-wrap">
+    <ul class="fui-list">
     <li>
       <img class="list-logo" :src="logoUrl" alt="fui">
-      <router-link class="item-name" to="/ts-list/base-data">base-data</router-link>
-      <i class="view-icon icon iconfont icon-xiangyou1"></i>
-    </li>
-    <li>
-      <img class="list-logo" :src="logoUrl" alt="fui">
-      <router-link class="item-name" to="/ts-list/interface">interface</router-link>
+      <router-link class="item-name" to="/fui/demo-list">demo-list</router-link>
       <i class="view-icon icon iconfont icon-xiangyou1"></i>
     </li>
     <li>
@@ -17,11 +12,9 @@
       <i class="view-icon icon iconfont icon-xiangyou1"></i>
     </li>
   </ul>
-  <transition name="slide-right">
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-  </transition>
+  <keep-alive>
+    <router-view></router-view>
+  </keep-alive>
   </div>
 </template>
 
@@ -37,10 +30,8 @@ export default class interfaces extends Vue{
 }
 </script>
 <style lang="scss" type="stylesheet/scss" scoped>
-@import '../../commons/style/transition/slide-right.scss';
-
-.ts-wrap{
-  .ts-list{
+.fui-wrap{
+  .fui-list{
     width: 96%;
     margin: 0 auto;
     font-size: .5rem;
@@ -85,5 +76,4 @@ export default class interfaces extends Vue{
     }
   }
 }
-
 </style>

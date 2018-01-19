@@ -5,9 +5,11 @@
                     :config="menusConfig"
                     @change-title="changeTitle"
                     @show-all-menus="changeMenus"></f-scroll-menus>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+        <transition name="fade">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </transition>
   </div>
 </template>
 <script lang="ts">
@@ -48,3 +50,7 @@ export default class Portal extends Vue {
   }
 }
 </script>
+<style lang="scss">
+@import '../../commons/style/transition/fade.scss';
+
+</style>
