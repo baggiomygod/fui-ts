@@ -1,0 +1,9 @@
+// 右侧滑入
+.slide-right-enter-active,
+.slide-right-leave-active{
+  transition:all .3s ease-out;
+}
+.slide-right-enter,
+.slide-right-leave-to{
+  transform: translate(100%, 0);
+}
