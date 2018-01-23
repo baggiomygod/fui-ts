@@ -1,5 +1,5 @@
 <template>
-<div class="data-wrap list-page fui-transitions">
+<div class="data-wrap full-page fui-transitions">
   <f-close :close-type="'header'"></f-close>
   <ul class="ts-list">
     <li>Provide,Inject:{{users}}</li>

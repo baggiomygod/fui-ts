@@ -12,6 +12,7 @@ import CssBox from 'views/css/demo/box.vue'
 
 // interview
 import InterView from 'views/interview/interview.vue'
+import Layout from 'views/interview/layout/layout.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -32,7 +33,9 @@ export default new Router({
     },
     {
       path: '/interview', component: InterView, name: 'inter-view',
-      children: []
+      children: [
+        { path: 'layout', component: Layout, name: 'layout' }
+      ]
     }
   ]
 })

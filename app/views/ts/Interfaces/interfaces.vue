@@ -1,5 +1,5 @@
 <template>
-    <div class="inter-wrap list-page">
+    <div class="inter-wrap full-page">
       <f-close :close-type="'header'"></f-close>
       <ul class="ts-list">
         <li>interface:{{baggio}}</li>

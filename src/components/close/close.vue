@@ -25,7 +25,7 @@ export default class Close extends Vue {
 </script>
 <style lang="scss" type="stylesheet/scss">
  .close-wrap{
-      position: fixed;
+      position: relative;
       display: inline-block;
       top: 0;
       left: 0;

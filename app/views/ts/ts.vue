@@ -11,7 +11,6 @@ import tsList from './ts.config'
 export default class interfaces extends Vue{
     listData: object[] = tsList.list
     mainUrl: string = 'ts-list'
-
 }
 </script>
 <style lang="scss" type="stylesheet/scss" scoped>

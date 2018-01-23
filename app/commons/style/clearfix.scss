@@ -1,0 +1,32 @@
+/* 1.清除浮动
+  同时添加clearfix:before：可避免上下盒子margin-bottom和margin-top重叠
+*/
+.clearfix:after,
+.clearfix:before{
+  content:" ";
+  display: table;
+}
+.clearfix:after{
+  clear:both;
+}
+
+/* 2.清除浮动
+  display:table,创建匿名表格单元，可以触发BFC
+*/
+// .clearfix:after{
+//   display: table;
+//   content:" ";
+//   clear:both;
+// }
+
+/*3. 清除浮动   添加看不见的块元素*/
+// .clearfix:after{
+//   content: ".";
+//   display:block;
+//   height:0;
+//   clear:both;
+//   visibility:hidden;
+// }
+
+// 其他方法
+// 1.添加div元素，设置clear:both
