@@ -8,11 +8,13 @@ import Interface from 'views/ts/interfaces/interfaces.vue'
 // fui
 import Fui from 'views/fui/fui.vue'
 import Css from 'views/css/css.vue'
-import CssBox from 'views/css/demo/box.vue'
+import CssBox from 'views/css/box/box.vue'
+import Layout from 'views/css/layout/layout.vue'
+import LayoutRow from 'views/css/layout-row/layout-row.vue'
+import TBLayout from 'views/css/layout-row/1_top-bottom-layout.vue'
 
 // interview
 import InterView from 'views/interview/interview.vue'
-import Layout from 'views/interview/layout/layout.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -34,7 +36,14 @@ export default new Router({
     {
       path: '/interview', component: InterView, name: 'inter-view',
       children: [
-        { path: 'layout', component: Layout, name: 'layout' }
+        { path: 'layout', component: Layout, name: 'layout' },
+        { path: 'css-box', name: 'css-box', component: CssBox },
+        {
+          path: 'layout-row', name: 'layout-row', component: LayoutRow,
+          children: [
+            { path: 'tb-layout', component: TBLayout, name: 'tb-layout' }
+          ]
+        }
       ]
     }
   ]

@@ -6,11 +6,11 @@
       <router-link class="item-name" :to="`/${mainUrl}/${item.url}`">{{item.name}}</router-link>
       <i class="view-icon icon iconfont icon-xiangyou1"></i>
     </li>
-    <li>
+    <!-- <li>
       <img class="list-logo" :src="gitLogoUrl" alt="fui">
       <a class="item-name" href="https://github.com/baggiomygod/fui">github</a>
       <i class="view-icon icon iconfont icon-xiangyou1"></i>
-    </li>
+    </li> -->
   </ul>
   <transition name="slide-right">
     <keep-alive>

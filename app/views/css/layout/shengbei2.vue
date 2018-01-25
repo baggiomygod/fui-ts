@@ -1,8 +1,8 @@
 <template>
-  <div class="layout-cup-r clearfix">
+  <article class="layout-cup-r clearfix">
     <div class="l-main">main</div>
     <div class="l-right">right</div>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
@@ -26,7 +26,7 @@
   // 父元素设置padding:210px;
   .layout-cup-r {
     width:100%; // 为什么100% 右侧会超出可视框？
-    padding-right: 210px;
+    padding-right: 2.5rem;
     box-sizing:border-box;
     .l-main {
       width: 100%;
@@ -35,11 +35,11 @@
       background-color: #eee;
     }
     .l-right {
-      width: 210px;
+      width: 2.5rem;
       height: 200px;
       background-color: #d2d2d2;
       float: right;
-      margin-right: -210px;
+      margin-right: -2.5rem;
     }
   }
 </style>

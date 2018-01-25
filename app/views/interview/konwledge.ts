@@ -1,11 +1,15 @@
 export default {
   'list': [{
-    'name': '页面布局',
+    'name': '页面布局-横向',
     'url': 'layout'
   },
   {
+    'name': '页面布局-纵向',
+    'url': 'layout-row'
+  },
+  {
     'name': 'css盒子模型',
-    'url': 'layout'
+    'url': 'css-box'
   },
   {
     'name': 'DOM事件',

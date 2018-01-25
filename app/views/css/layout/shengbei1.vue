@@ -1,9 +1,9 @@
 <template>
-  <div class="layout-cup-l clearfix">
+  <article class="layout-cup-l clearfix">
     <div class="l-left">left</div>
     <div class="l-main">main</div>
   </div>
-  </div>
+</article>
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@
   // 父元素设置padding:210px;
   .layout-cup-l {
     width:100%;
-    padding-left: 210px;
+    padding-left: 2.5rem;
     .l-left,
     .l-main {
       height: 200px;
@@ -38,8 +38,8 @@
       background-color: #eee;
     }
     .l-left {
-      width: 210px;
-      margin-left: -210px;
+      width: 2.5rem;
+      margin-left: -2.5rem;
       background-color: #e2e2e2;
     }
   }

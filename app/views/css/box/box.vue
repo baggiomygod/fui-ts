@@ -1,5 +1,6 @@
 <template>
   <div class="css-box full-page fui-transitions">
+      <f-close :close-type="'header'"></f-close>
     <p>content-box:总宽度=100(width)+10*2(padding)+5*2(border)+margin</p>
     <p>width = content(元素内容)</p>
     <div class="content-box">content:100px</div>
