@@ -12,7 +12,8 @@ declare module 'vue/types/vue' {
   interface Vue {
     $router: VueRouter,
     $route: Route,
-    $http: any
+    $http: any,
+    style: object
   }
 }
 

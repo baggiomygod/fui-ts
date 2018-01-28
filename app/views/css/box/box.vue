@@ -1,12 +1,18 @@
 <template>
   <div class="css-box full-page fui-transitions">
-      <f-close :close-type="'header'"></f-close>
+    <f-close :close-type="'header'"></f-close>
+    <!-- 标准盒模型 -->
     <p>content-box:总宽度=100(width)+10*2(padding)+5*2(border)+margin</p>
     <p>width = content(元素内容)</p>
-    <div class="content-box">content:100px</div>
+    <div class="content-box" ref="contentBox">content:100px</div>
+    <button @click="getContentWidth">获取盒模型宽高</button>
+    <p>标准盒模型width:{{contentWidth}}</p>
+    <!-- IE盒模型 -->
     <p>border-box:总宽度 = 70(content) + 10*2(padding) + 5*2(border)+margin</p>
     <p>width = content(元素内容)+padding+border</p>
-    <div class="border-box">content:70px</div>
+    <div class="border-box" ref="borderBox">content:70px</div>
+     <button @click="getBorderBoxWidth">获取盒模型宽高</button>
+    <p>标准盒模型width:{{borderBoxWidth}}</p>
   </div>
 </template>
 
@@ -14,7 +20,18 @@
 import { Vue, Component, Provide } from 'vue-property-decorator'
 @Component({})
 export default class interfaces extends Vue{
-
+  contentWidth: number = 0;
+  borderBoxWidth: number = 0;
+  getContentWidth(){
+    let el = this.$refs.contentBox;
+    console.log(el['style'].width); // dom.style.width 只能获取内联样式的值
+    // console.log(el['currentStyle'].width); // dom.currentStyle.width 仅IE支持
+    // window.getComputedStyle(el).width; // 只读
+    // console.log(el.getBoundingClientRect())
+  }
+  getBorderBoxWidth(){
+    // this.contentWidth = this.$refs.borderBox.style.width;
+  }
 }
 </script>
 <style lang="scss" type="stylesheet/scss" scoped>
