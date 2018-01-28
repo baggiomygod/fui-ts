@@ -6,6 +6,10 @@ export default {
   {
     'name': 'interface',
     'url': 'interface'
+  },
+  {
+    'name': 'promise',
+    'url': 'promise'
   }
   ]
 }

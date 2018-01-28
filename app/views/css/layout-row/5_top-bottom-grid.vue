@@ -5,12 +5,11 @@
             <i class="close icon iconfont icon-xiangzuo1"></i>
     </header>
     <section class="layout-main layout-item">
-      <h3>main...float</h3>
-      <article>
+      <article class="main-content">
         <p v-for="item in dataList" :key="item">text...</p>
       </article>
     </section>
-    <footer class="layout-footer layout-item"></footer>
+    <footer class="layout-footer layout-item">footer</footer>
   </div>
 </template>
 
@@ -28,7 +27,7 @@ export default class TBFloatLayout extends Vue {
           this.$router.go(-1);
     }
     created(){
-      for (let i = 0 ; i < 100; i++){
+      for (let i = 0 ; i < 35; i++){
         this.dataList.push(i);
       }
     }
@@ -37,30 +36,21 @@ export default class TBFloatLayout extends Vue {
 </script>
 <style lang='scss' scoped>
   .top-bottom-wrap{
-    padding: 1rem 0;
-    box-sizing: border-box;
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 1rem auto 1rem;
+    .layout-main{
+      .main-content{
+        overflow: scroll;
+        height: calc(100vh - 2rem);
+      }
+    }
     .layout-header,
     .layout-footer{
-          height: 1rem;
           line-height: 1rem;
           background-color: #3e98f0;
           color:#fff;
     }
-    // float width display
-    .layout-item{
-      display: block;
-      float: left;
-      width: 100%;
-    }
-    .layout-main{
-      height: 100%;
-      overflow: scroll;
-    }
-    .layout-header{
-      margin-top: -1rem;
-    }
-    .layout-footer{
-      // margin-bottom: -1rem;
-    }
+
   }
 </style>

@@ -18,6 +18,22 @@ import {
     listData: object[] = [{
               'name': '上下固定、中间自适应',
               'url': 'tb-layout'
+            },
+            {
+              'name': '上下固定、中间自适应.float',
+              'url': 'tbf-layout'
+            },
+            {
+              'name':'flex',
+              'url':'tbflex-layout'
+            },
+            {
+              'name':'table',
+              'url':'tbtable-layout'
+            },
+            {
+              'name':'grid',
+              'url':'tbgrid-layout'
             }]
   }
 </script>

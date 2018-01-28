@@ -1,4 +1,5 @@
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import {Route} from 'vue-router'
 import Vue from 'vue'
 
@@ -10,7 +11,8 @@ declare module "*.vue" {
 declare module 'vue/types/vue' {
   interface Vue {
     $router: VueRouter,
-    $route: Route
+    $route: Route,
+    $http: any
   }
 }
 

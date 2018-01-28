@@ -16,9 +16,11 @@ export default class Close extends Vue {
 
   // methods
   back(): void{
-    console.log(this['$router']);
-    // 为什么 this.$router报错：Property '$router' does not exist on type 'Close'
-    // this['$router'].go(-1);
+    /*
+       问题：this.$router报错：Property '$router' does not exist on type 'Close'
+       1.默认：this['$router'].go(-1); ts可以识别转义
+       2.vue-shim.d.ts: 添加全局变量使TS可识别this.$router
+    */
     this.$router.go(-1);
   }
 }
