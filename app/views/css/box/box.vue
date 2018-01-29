@@ -20,17 +20,18 @@
 import { Vue, Component, Provide } from 'vue-property-decorator'
 @Component({})
 export default class interfaces extends Vue{
-  contentWidth: number = 0;
-  borderBoxWidth: number = 0;
+  contentWidth: number = 0
+  borderBoxWidth: number = 0
   getContentWidth(){
-    let el = this.$refs.contentBox;
-    console.log(el['style'].width); // dom.style.width 只能获取内联样式的值
-    // console.log(el['currentStyle'].width); // dom.currentStyle.width 仅IE支持
-    // window.getComputedStyle(el).width; // 只读
-    // console.log(el.getBoundingClientRect())
+    let el: any= this.$refs.contentBox
+    console.log('el:', el);
+    console.log(el.getBoundingClientRect())
+    console.log(window.getComputedStyle(el).width) // 只读, 获取浏览器渲染后的样式值
+    console.log(el.currentStyle.width) // dom.currentStyle.width 仅IE支持
+    console.log(el.style.width) // dom.currentStyle.width 仅IE支持
   }
   getBorderBoxWidth(){
-    // this.contentWidth = this.$refs.borderBox.style.width;
+    // this.contentWidth = this.$refs.borderBox.style.width
   }
 }
 </script>

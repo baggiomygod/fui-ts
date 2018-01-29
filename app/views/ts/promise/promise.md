@@ -23,6 +23,21 @@ Promise延迟并在以后执行了某些东西。一个promise指定一个稍后
 js引擎在相同的时间内只能执行一段代码，所以引擎不需要追踪可能运行的代码，而是在它们准备好执行时将它们放置到任务队列(job queue)。当代码由js引擎执行完毕后，引擎通过event loop找到并执行队列中的下一个任务。event loop是js引擎内部的线程用来监控代码的执行情况和管理任务队列。
 （既然它是个队列，那么任务就会由开始到最后的顺序依次执行）
 ##### 2.1.1 事件模型---The Event Model
+一个事件onclick会在被点击后触发。为了响应该交互，一个新的任务会被添加到任务队列中。-----这就是js异步变成中最基本的形式。
+> 关于处理事件的代码直到事件发生后才会执行，此时的上下文（context）会出现。
+
+- 示例：
+```
+let button = document.getElementById("my-btn");
+button.onclick = function(event) {
+    console.log("Clicked");
+};
+```
+以上代码在点击后，赋值给onclick的代码会被添加到任务队列中，并在先前的所有任务完成后执行。
+
+> 事件在简单的交互下能很好的工作，但串联多个独立的异步调用会很复杂，因为你必须追踪每个事件中的作用对象。
+> 你必须保证click事件第一次发生前注册onclick处理函数, 否则什么事都不会发生。
+
 
 ##### 2.2.1 回调模式--- The Callback Pattern
 - node.js诞生后，它通过在变成中广泛使用回调模式来进一步发展异步编程模型。
@@ -30,6 +45,7 @@ js引擎在相同的时间内只能执行一段代码，所以引擎不需要追
 - 差异是： 回调模式要调用的函数是参数。
 示例：
 ```
+// readFile('example.txt', 回调的函数)
 readFile('example.txt', (err, contents) => {
   if (err) {
     throw err;
@@ -40,3 +56,22 @@ readFile('example.txt', (err, contents) => {
 
 console.log('Hi')
 ```
+以上代码：1. readFile()在“读取example的时刻函数中断运行“---->2. ```console.log('Hi')```执行---->3. 当readFile()执行完毕，回调函数和参数被添加到任务队列的末尾，并在先前的任务全部执行之后运行。
+
+> 当有嵌套过多的方法调用会形成错综复杂的代码。
+- 如何让两个异步操作并行执行而且全部完成之后发送通知？
+- 如何让两个异步操作同时执行但是只接受先完成任务的结果？
+
+##### 2.2.2 promise基础 Promise Basics
+
+  1. **promise的声明周期**
+  2. **创建未定义的promise**
+  3. **创建已定义的promise**
+  4. **执行错误**
+
+##### 2.2.3 promise的全局Rejection处理
+
+##### 2.2.4 promise链
+
+##### 2.2.5 响应多个promise
+##### 2.2.6 promise继承

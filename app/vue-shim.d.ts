@@ -13,7 +13,8 @@ declare module 'vue/types/vue' {
     $router: VueRouter,
     $route: Route,
     $http: any,
-    style: object
+    style: object,
+    getBoundingClientRect: any,
   }
 }
 
