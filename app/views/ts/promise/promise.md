@@ -63,8 +63,37 @@ console.log('Hi')
 - 如何让两个异步操作同时执行但是只接受先完成任务的结果？
 
 ##### 2.2.2 promise基础 Promise Basics
-
+promise是异步操作结果的占位符。函数可以返回一个promise,而不用订阅一个事件或想函数传递回调参数。
   1. **promise的声明周期**
+    - pending(未定、挂起):每个promise的声明周期一开始都会处于短暂的挂起(pending)状态，表示异步操作仍未完成，即挂起的promise被认定是未定的。
+    - 已定状态settled：
+      - fulfilled: promise异步操作已完成
+      - rejected: promise异步操作未完成，发生错误。
+  所有的promise都包含then()方法并接受两个参数:```.then(success(){}, handleErr(){})```,即成功fulfilled时的处理函数和失败rejected时的处理函数。
+
+  > 以该种方式实现then()方法的对象都被称为thenanle。所有promise都是thenabe,但是不是多有的thenable都是promise.
+
+ - catch()
+  ```
+    promise.catch(function(err) {
+    // rejection
+    console.error(err.message);
+    });
+
+    // 等效于:
+
+    promise.then(null, function(err) {
+        // rejection
+        console.error(err.message);
+    });
+  ```
+    then()和catch()的目的是让你组合使用它们以用来正确的处理异步操作。
+    （promise的then()和catch()使操作成功或失败一目了然。事件出现错误后不会被触发，而回调函数则总是要查看error参数。
+
+    > 需要记住如果你不给promise添加rejection处理，那么所有错误会悄无声息的发生。不要忽略rejection处理。
+
+
+
   2. **创建未定义的promise**
   3. **创建已定义的promise**
   4. **执行错误**

@@ -35,3 +35,6 @@
     - disply:inline-box,table,table-cell...table相关属性都可以创建BFC
 
   3. BFC的使用场景
+    - 清除浮动---父元素的子元素浮动时。使用BFC可以使为BFC的父元素元素参与高度计算---原理是什么？
+    - float布局时， 使用BFC可以方式float元素重叠---原理是什么？
+    - BFC可以让外边距不重叠---原理是什么？

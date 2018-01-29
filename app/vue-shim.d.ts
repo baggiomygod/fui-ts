@@ -23,12 +23,6 @@ declare module 'vue/types/vue' {
 // declare global {
 //   const _: typeof lodash
 // }
-// declare module 'vue/types/vue' {
-  // interface Vue {
-    // $Message: any,
-    // $Modal: any
-  // }
-// }
 
 // iview 全局方法
 // declare module 'vue/types/vue' {
