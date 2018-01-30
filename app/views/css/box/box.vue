@@ -52,7 +52,16 @@
     <section class="clear-no-bfc">
       <div class="float">浮动元素(父元素height为0)</div>
     </section>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+    <section class="bfc-test">
+      <h3>BFC TEST</h3>
+      <div class="float-div">float</div>
+      <div class="bfc-div">BFC元素</div>
+    </section>
 
   </div>
 </template>
@@ -148,6 +157,24 @@ export default class interfaces extends Vue{
   .float{
     float: left;
     font-size: 30px;
+  }
+}
+
+.bfc-test{
+  .bfc-div{
+    width: 200px;
+    height: 120px;
+    background-color: #ff0;
+    // display: table-caption; // table-cell inline-block
+    // position: fixed;  // absolute
+    // float: left; // right---不为none
+    overflow: auto; // hidden scroll---不为visible
+  }
+  .float-div{
+    width: 100px;
+    height: 100px;
+    background-color: #e2e;
+    float: left;
   }
 }
 </style>

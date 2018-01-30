@@ -12,6 +12,10 @@ export default {
     'url': 'css-box'
   },
   {
+    'name': 'css-BFC',
+    'url': 'css-bfc'
+  },
+  {
     'name': 'DOM事件',
     'url': 'layout'
   },

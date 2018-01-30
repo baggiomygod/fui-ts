@@ -10,6 +10,7 @@ import PromiseTest from 'views/ts/promise/promise.vue'
 import Fui from 'views/fui/fui.vue'
 import Css from 'views/css/css.vue'
 import CssBox from 'views/css/box/box.vue'
+import CssBfc from 'views/css/bfc/bfc.vue'
 import Layout from 'views/css/layout/layout.vue'
 import LayoutRow from 'views/css/layout-row/layout-row.vue'
 import TBLayout from 'views/css/layout-row/1_top-bottom-layout.vue'
@@ -28,7 +29,8 @@ const routes = [
   {
     path: '/css', name: 'css', component: Css,
     children: [
-      { path: 'css-box', name: 'css-box', component: CssBox }
+      { path: 'css-box', name: 'css-box', component: CssBox },
+      { path: 'css-bfc', name: 'css-bfc', component: CssBfc }
     ]
   },
   {
@@ -44,6 +46,7 @@ const routes = [
     children: [
       { path: 'layout', component: Layout, name: 'layout' },
       { path: 'css-box', name: 'css-box', component: CssBox },
+      { path: 'css-bfc', name: 'css-bfc', component: CssBfc },
       {
         path: 'layout-row', name: 'layout-row', component: LayoutRow,
         children: [
@@ -51,7 +54,8 @@ const routes = [
           { path: 'tbf-layout', component: TBFloatLayout, name: 'tbf-layout' },
           { path: 'tbflex-layout', component: TBFlexLayout, name: 'tbflex-layout' },
           { path: 'tbtable-layout', component: TBTableLayout, name: 'tbtable-layout' },
-          { path: 'tbgrid-layout', component: TBGridLayout, name: 'tbgrid-layout' }
+          { path: 'tbgrid-layout', component: TBGridLayout, name: 'tbgrid-layout' },
+          { path: 'css-bfc', name: 'css-bfc', component: CssBfc }
         ]
       }
     ]

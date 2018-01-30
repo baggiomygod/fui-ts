@@ -6,6 +6,12 @@
       <router-link class="item-name" to="/css/css-box">css-box</router-link>
       <i class="view-icon icon iconfont icon-xiangyou1"></i>
     </li>
+     <li>
+      <img class="list-logo" :src="logoUrl" alt="fui">
+      <router-link class="item-name" to="/css/css-bfc">css-bfc</router-link>
+      <i class="view-icon icon iconfont icon-xiangyou1"></i>
+    </li>
+
   </ul>
   <keep-alive>
     <router-view></router-view>

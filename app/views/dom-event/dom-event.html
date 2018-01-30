@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dom event</title>
+  <style>
+    #dom-event{
+      width: 300px;
+      height: 200px;
+      background-color: blue
+    }
+    #contom-event{
+      width: 300px;
+      height: 200px;
+      background-color: rgb(55, 71, 55);
+    }
+  </style>
+</head>
+<body>
+  <div id="dom-event"></div>
+  <div id="contom-event"></div>
+
+  <script>
+    let el = document.getElementById('dom-event');
+    let html = document.documentElement;
+    // 捕获第一个接收事件的是window
+    // window.addEventListener('click', () => {
+    //   console.log('window:捕获第一个接收事件的是window')
+    // }, true); // 捕获阶段响应
+    // document.addEventListener('click', () => {
+    //   console.log('document--->')
+    // }, true); // 捕获阶段响应
+    // html.addEventListener('click', () => {
+    //   console.log('html--->')
+    // }, true); // 捕获阶段响应
+    // document.body.addEventListener('click', () => {
+    //   console.log('body--->')
+    // }, true); // 捕获阶段响应
+    // el.addEventListener('click', () => {
+    //   console.log('div')
+    // }, true);
+
+    let cusEl = document.getElementById('contom-event');
+    // 创建事件对象
+    // let eve = new Event('test');
+    let eve = new CustomEvent('test', {
+      detail:{a:1},
+      bubbles: true,
+      cancelable: true
+      // ...
+    });
+    cusEl.addEventListener('test', (event) => {
+      console.log('test event', event);
+      console.log('test target', event.detail);
+      // console.log('test target', event.bubbles);
+      // console.log('test target', event.cancelable);
+      // console.log('test current', data.currentEvent);
+    }, false);
+    // 触发事件
+    setTimeout(() => {
+      cusEl.dispatchEvent(eve)
+    }, 1000);
+  </script>
+</body>
+</html>
