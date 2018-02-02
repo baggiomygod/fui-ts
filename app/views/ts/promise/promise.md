@@ -92,10 +92,49 @@ promise是异步操作结果的占位符。函数可以返回一个promise,而�
 
     > 需要记住如果你不给promise添加rejection处理，那么所有错误会悄无声息的发生。不要忽略rejection处理。
 
-
-
   2. **创建未定义的promise**
-  3. **创建已定义的promise**
+  promise由Promise构造函数创建。该构造函数接收一个参数：包含初始化promise代码的执行函数。该执行函数接收resolve()---成功，promise可使用、reject()---代表该执行函数运行失败。
+  node.js示例
+  ```
+     let fs = reuqire("fs");
+
+  function readFile(filename) {
+      console.log('readFile()调用后立即执行...');
+      return new Promise((resolve, reject) => {
+      console.log('立即执行 promise1...');
+        // 异步读取文件
+        fs.readFile(filename,
+                    {encoding: 'utf8'},
+                    (err, contents) => {
+                      console.log('立即执行 promise2...');
+
+                        if (err) {
+                          reject(err);
+                          return;
+                        }
+                        console.log('立即执行 promise3...');
+
+                        resolve(contents);
+                    });
+      });
+    }
+
+    let rfsPromise = readFile('example.txt'); // readFile()调用后执行函数立即执行
+    // 同时监听 fulfillment 和 rejection
+    // then()在readFile()执行完毕后，才被添加带任务队列;console.log('test')可能会先执行
+    rfsPromise.then(contents => {
+      // fulfillment
+      console.log(contents)
+    }, err => {
+      // rejection
+      console.log(err.message)
+    });
+
+    console.log('test');
+  ```
+
+  3. **创建已定义的promise (Creating Settled Promises)**
+
   4. **执行错误**
 
 ##### 2.2.3 promise的全局Rejection处理

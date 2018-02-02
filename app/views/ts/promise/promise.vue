@@ -26,8 +26,10 @@ export default class PromiseTest extends Vue {
     this.resData = 'loading...';
   }
   signin(){
-    this.$http.post('http://127.0.0.1:3000/signin', {name: this.name, password: this.password})
-      .then(res => {
+    this.$http.post('http://127.0.0.1:3000/signin', {
+        name: this.name,
+        password: this.password
+      }).then(res => {
         console.log(res);
         this.resData = res;
       }).catch(err => {
