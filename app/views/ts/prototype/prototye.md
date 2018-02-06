@@ -74,9 +74,11 @@ function defineNew(Cls){
 ```
 
 #### 如果构造函数没有使用new调用
+
 此时，就是普通函数，
 1. 普通函数没有制定return返回值时，默认fanhuiundefined;
 ```let p = Person(); // p :undefiend```
+
 2. 普通函数调用时，this指向全局
 ```
 function Person(){
@@ -91,7 +93,8 @@ console.log(p.name); // 报错
 ### Object.create()---使用制定的原型对象及其属性去创建一个新的对象
 ##### 1. Object.create 实现类式继承
 细读：http://blog.csdn.net/blueblueskyhua/article/details/73135938
-实现方式：
+
+create()实现方式：
 ```
 Object.create =  function (o) {
     var F = function () {};
@@ -99,3 +102,27 @@ Object.create =  function (o) {
     return new F();
 };
 ```
+
+##### Object.create和new
+示例1：
+```
+var Base = function(){
+      this.a = 'aaa';
+    }
+    let o1 = new Base();
+    let o2 = Object.create(Base);
+    console.log(o1.a); // aaa
+    console.log(o2.a); // undefined
+```
+示例2：
+```
+var Base = function(){
+      this.a = 'aaa';
+    }
+    Base.prototype.a = 3
+    let o1 = new Base();
+    let o2 = Object.create(Base);
+    console.log(o1.a); // aaa, o1.__proto__--->Base.prototype
+    console.log(o2.a); // undefined, o2.__proto__--->F(){}.prototype--->Base(){}
+```
+
