@@ -126,3 +126,41 @@ var Base = function(){
     console.log(o2.a); // undefined, o2.__proto__--->F(){}.prototype--->Base(){}
 ```
 
+# 继承
+### 1. 构造函数继承
+构造函数继承了父类的属性---通过call()、apply()方法改变this指向
+缺点：不能继承父类原型链上的方法
+```
+function Person(){
+  this.name = 'aa';
+}
+Person.prototype.say = function (){
+  console.log('hi!');
+}
+function Man(){
+  Person.call(this);
+  this.age=12;
+}
+
+let a = new Man();
+```
+
+### 2. 原型链继承
+通过原型链继承，
+造成的缺点:创建的实例会共用原型对象，当修改一个时，在其它实例上也会体现。
+```
+function Person(){
+  this.name = 'aa';
+  this.arr = [1,2,3];
+  this.play = {a:1, b:2}
+}
+function Man(){
+  this.age = 'bb'
+}
+
+Man.prototype = new Person();
+
+let m1 = new Man();
+let m2 = new Man();
+m1.__proto__ === m2.__proto__;
+```
