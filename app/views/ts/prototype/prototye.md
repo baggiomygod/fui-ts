@@ -129,7 +129,7 @@ var Base = function(){
 # 继承
 ### 1. 构造函数继承
 构造函数继承了父类的属性---通过call()、apply()方法改变this指向
-缺点：不能继承父类原型链上的方法
+**缺点：不能继承父类原型链上的方法**
 ```
 function Person(){
   this.name = 'aa';
@@ -147,7 +147,7 @@ let a = new Man();
 
 ### 2. 原型链继承
 通过原型链继承，
-造成的缺点:创建的实例会共用原型对象，当修改一个时，在其它实例上也会体现。
+**造成的缺点:创建的实例会公用原型对象，当修一个实例改原型对象上的属性时，在其它实例上也会体现。---非基础类型数据都是引用，指向同一个内存空间。**
 ```
 function Person(){
   this.name = 'aa';
@@ -162,5 +162,105 @@ Man.prototype = new Person();
 
 let m1 = new Man();
 let m2 = new Man();
-m1.__proto__ === m2.__proto__;
+m1.__proto__ === m2.__proto__; // 都指向Person这个构造函数
 ```
+
+### 3. 组合继承
+```
+function Person(){
+  this.name = 'person.';
+  this.play = [1,2,3]
+}
+function Man(){
+  Person.call(this);
+  this.age = 12;
+}
+
+Person.prototype.say = function(){
+  console.log('hi!');
+}
+
+Man.prototype = new Person();
+
+let m1 = new Man();
+let m2 = new Man();
+m1.play.push(4);
+m1.play; // [1,2,3,4]  play属性在两个实例上式单独的拷贝
+m2.play; // [1,2,3]
+
+m1.__proto__ === m2.__proto__; // 都指向Person这个构造函数
+```
+
+> 组合继承缺点---创建一个实例时执行了2次父类函数
+  1. Man.prototype = new Person();
+  2. new Man()时，其内部的：Person.call(this);
+> construcor 指向有正确：
+  因为Man.prototype是Person的实例，它的constructor就是Person。
+
+### 组合继承--优化
+```
+function Person(){
+  this.name = 'person.';
+  this.play = [1,2,3]
+}
+function Man(){
+  Person.call(this); // 只执行了一次父类构造函数
+  this.age = 12;
+}
+
+Person.prototype.say = function(){
+  console.log('hi!');
+}
+/*
+  1.引用了父类的原型（即引用了对象，导致该方法的缺点）:
+    m1.__proto__ === Man.prototype;---实例的__proto__指向Man构造函数的prototype属性；
+    而Man.prototype 又和Person.prototype是绝对相等的，指向同一块内存空间
+*/
+Man.prototype = Person.prototype;
+
+// 这里修改constructor，也会改变Person.prototype.constructor，因为它们指向同一块内存空间
+// Man.prototype.constructor = Man;
+let m1 = new Man();
+let m2 = new Man();
+
+// 以下两个都输出true,如何区分m1是Man创建的实例还是Person创建的？
+console.log(m1 instanceof Man); // true
+console.log(m1 instanceof Person); // true
+console.log(m1.constructor); // Person
+
+```
+> 优化： 避免了2次执行父类构造函数
+> 缺点：constructor指向不对（因为Man.prototype和Person.prototype指向同一块内存空间）。不好判断实例是都直接由那个构造函数创建
+
+### 组合继承---优化2
+```
+function Person(){
+  this.name = 'person.';
+  this.play = [1,2,3]
+}
+function Man(){
+  Person.call(this); // 只执行了一次父类构造函数
+  this.age = 12;
+}
+
+Person.prototype.say = function(){
+  console.log('hi!');
+}
+
+/*
+Object.create:
+Object.create = function(o){
+  let F = function(){};
+  F.prototype = o;
+  return new F();
+}
+*/
+Man.prototype = Object.create(Person.prototype);
+Man.prototype.constructor = Man; // 指定原型对象
+
+let m1 = new Man();
+```
+> m1.__proto__--->Man.prototype--->new F(), new F().__proto__---> F.prototype--->Person.prototype
+- 实例m1的__proto__指向其构造函数的prototype属相，即Object.create返回的new F()实例，
+- new F().__proto__又指向它的构造函数F.prototype等于Person.prototype构造函数
+

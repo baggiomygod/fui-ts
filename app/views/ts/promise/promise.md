@@ -134,6 +134,43 @@ promise是异步操作结果的占位符。函数可以返回一个promise,而�
   ```
 
   3. **创建已定义的promise (Creating Settled Promises)**
+  Promise构造函数由于其内部执行函数与生俱来的动态特性使得它是创建未定promise的最佳方式。
+
+  **3.1 Promise.resolve()**
+    Promise.resolve()方法接收单个参数并返回一个fulfilled状态的promise
+    ```
+      let promise = Promise.resolve(42);
+      promise.then(val => {
+        console.log(val);
+      })
+    ```
+
+  **3.2 Promise.reject()**
+    ```
+      let promise = Promise.reject('err');
+      promise.catch((err) => {
+        console.log(err);
+      })
+    ```
+
+  **3.3 非promise的thenable对象**
+    Promise.resolve()和Promise.reject()也可以接收非promise的thenable对象作为参数。在传递它之后，这些方法在调用then()之后创建一个新的promise。
+
+    一个不属于promise的thenable指的是包含then()方法的对象。该方法接收resolve和reject作为参数：
+    ```
+      let thenable = {
+        then(resolve, reject) {
+          resolve(42);
+        }
+      };
+
+      let p1 = Promise.resolve(thenable);
+      p1.then(val => {
+        console.log(val);
+      });
+    ```
+
+
 
   4. **执行错误**
 
