@@ -111,9 +111,75 @@ Http协议采用“请求--应答”模式，当使用普通模式，即非Keep-
 ### 1. 什么是同源策略和限制
   同源策略限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。
   是一个用于隔离潜在恶意文件的关键的安全机制。
-  > 源：协议、域名、端口构成了一个源---三者中其中一者不一样就不同源（跨域）
+  > 源：协议、域名(主机)、端口构成了一个源---三者中其中一者不一样就不同源（跨域）
+
+  - 同源策略的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。
+
+  ##### 限制：
+    1. Cookie、LocalStorage和IndexDB无法读取
+    2. DOM无法获得
+    3. AJAX请求不能发送
+
 2. 前后端如何通信
 3. 如何创建Ajax
 4. 跨域通信的几种方式
-  - jsonp
-  - cors
+  ##### 4.1 设置document.domain (只适用于 Cookie 和 iframe 窗口)
+    当网页一级域名相同，而二级域名不同时，可以通过设置document.domain，使两个页面可以共享Cookie
+
+    > http://w1.example.com/a.html;
+    > http://w2.example.com/b.html;
+
+    ```
+      document,domain = 'example.com';
+    ```
+    A网页设置一个cookie
+    a.html:
+    ```
+      document.cookie = 'test1=hello';
+    ```
+    b.html
+    ```
+      let allCookie = documenty,cookie;
+    ```
+
+    > 该方式不适用于LocalStorage和IndexDB;
+    > 服务器：设置Cookie的所属域名为一级域名：
+      ```Set-Cookie:key=calueldomian=.example.com; path:/```
+
+  ##### 4.2 片段识别符号（URL的#之后的部分）
+   ```http://example.com/text#fragment```,#fragment就是片段识别符。
+   > 如果只是改变片段标识符，页面不会刷新。
+
+  http://w2.example.com/a.html:
+  ```
+    <body>
+      父页面
+      <iframe src="http://w2.example.com/b.html"></iframe>
+    </body>
+  ```
+  父窗口可以把信息写入子窗口的片段标识符
+  ```
+    let src = originURL + '#' + data;
+    documeng.getElementById('myIframe').src = src
+  ```
+
+子页面设置hash，父页面拿到值：
+```
+parent.location.href= target + "#" + hash;
+```
+  **详见：http/origin.html示例**
+
+
+##### 4.3 window.name
+略
+##### 4.4 window.postMessage
+
+##### 4.5 jsonp
+简单实用，兼容性好，服务器改造小
+
+通过网页<script>元素，想服务器请求json数据，这种做法不受同源策略限制；服务器收到请求后，数据放在一个制定的回调函数里传回来。
+
+##### 4.6 cors
+
+##### 4.7 webSocket
+

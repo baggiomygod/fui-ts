@@ -55,8 +55,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks:['app']
     }),
+    // chunks的作用是每次编译、运行时每一个入口都会对应一个entry，如果没写则引入所有页面的资源。
+    new HtmlWebpackPlugin({
+      filename: 'sell.html',
+      template: 'sell.html',
+      inject: true,
+      chunks:['sell']
+    }),
+
     // copy custom static assets
     new CopyWebpackPlugin([
       {

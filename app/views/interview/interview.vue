@@ -11,6 +11,8 @@ import konwledgeList from './konwledge'
 export default class interfaces extends Vue{
   listData: object[] = konwledgeList.list
   mainUrl: string = 'interview'
+
+
 }
 </script>
 <style lang="scss" type="stylesheet/scss" scoped>

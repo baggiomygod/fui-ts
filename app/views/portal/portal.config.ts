@@ -13,6 +13,7 @@ export default {
     { 'menu_name': '3D', 'url': '/3D' },
     { 'menu_name': 'webGL', 'url': '/webGL' },
     { 'menu_name': 'canvas', 'url': '/canvas' },
-    { 'menu_name': 'app', 'url': '/app' }
+    { 'menu_name': 'app', 'url': '/app' },
+    { 'menu_name': 'sell', 'url': 'sell.html', 'href': 'sell.html' }
   ]
 }

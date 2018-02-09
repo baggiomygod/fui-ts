@@ -16,6 +16,17 @@ import {Vue, Component, Prop} from 'vue-property-decorator'
 export default class Header extends Vue {
   @Prop({default: ''})
   title: string
+  /*
+   iframe+hash标识符,验证跨域通信
+   父页面：interview/http/origin.html
+  */
+  checkHashChange(){
+    let hash = window.location.hash;
+    this.title = hash;
+  }
+  mounted(){
+    window.onhashchange = this.checkHashChange;
+  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

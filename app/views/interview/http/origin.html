@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">changeHash</button>
+  <iframe id="my-iframe" src="http://localhost:8080/" frameborder="0"></iframe>
+
+  <p>http://example.com/text#fragment,#fragment就是片段识别符。</p>
+  <p>如果只是改变片段标识符，页面不会刷新。</p>
+
+   <h4>1. origin.html:父页面设置iframe元素而的src属性</h4>
+   <code>
+     <pre>
+      let originUrl = 'http://localhost:8080/';
+      let btnEl = document.getElementById('btn');
+      btnEl.addEventListener('click', changeHash);
+      // 父页面设置iframe元素而的src属性
+      function changeHash(){
+        let i = 0;
+        i++;
+        let src = originUrl + '#/' + i;
+        let iframe = document.getElementById('my-iframe');
+        iframe.src = src;
+      }
+    </pre>
+   </code>
+   <h4>2. header.vue:子页面监听hash变化拿到数据</h4>
+   <code>
+     <pre>
+       checkHashChange(){
+         let hash = window.location.hash;
+         this.title = hash;
+       }
+       mounted(){
+         window.onhashchange = this.checkHashChange;
+       }
+     </pre>
+   </code>
+  <script>
+    let originUrl = 'http://localhost:8080/';
+    let btnEl = document.getElementById('btn');
+    btnEl.addEventListener('click', changeHash);
+
+    function changeHash(){
+      console.log('sss');
+      let i = 0;
+      i++;
+      let src = originUrl + '#/' + i;
+      let iframe = document.getElementById('my-iframe');
+      iframe.src = src;
+    }
+  </script>
+</body>
+</html>

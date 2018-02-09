@@ -23,7 +23,8 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     // app: './src/main.ts'
-    app: './app/main.ts'
+    app: './app/main.ts',
+    sell: './sell/main.ts'
   },
   output: {
     path: config.build.assetsRoot,

@@ -2,7 +2,8 @@
       <div class="menus-wrap">
         <ul class="nav-menus">
           <li class="nav-item" v-for="item in config" :key="item.menu_name" @click="changeHeader(item.menu_name)">
-            <router-link :to="item.url" active-class="active">{{item.menu_name}}</router-link>
+            <a v-if="item.href" :href="item.href" target="_blank">{{item.menu_name}}</a>
+            <router-link v-else :to="item.url" active-class="active">{{item.menu_name}}</router-link>
           </li>
         </ul>
       </div>
