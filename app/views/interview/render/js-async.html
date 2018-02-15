@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>性能优化--async</title>
+  <script src="./async1.js" chaeset="utf-8" async></script>
+  <script src="./async2.js" chaeset="utf-8" async></script>
+</head>
+<body>
+  <div class="">
+    async1文件很大时，async2先加载完毕 先执行
+    <script>
+      console.log('write...');
+      document.write('<span>write</span>')
+    </script>
+    <script>
+      for(let i = 0; i< 10000; i++){
+        if (i % 1000 === 0) {
+          console.log(i);
+        }
+      }
+    </script>
+
+  </div>
+</body>
+</html>
