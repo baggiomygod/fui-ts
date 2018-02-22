@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+<body>
+    <div>
+      <input type="text" id="email">
+      <input type="text" id="name">
+      <input type="text" id="age">
+    </div>
+    <p id="help"></p>
+  <script>
+    function showHelp(help){
+        document.getElementById('help').innerHTML = help;
+      }
+
+      function setupHelp(){
+        let helpText = [
+          {id:'email', help: 'your e-mail address'},
+          {id:'name', help: 'your full name'},
+          {id:'age', help: 'your age'},
+        ];
+
+        for (let i = 0; i < helpText.length; i++){
+          var item = helpText[i]; // var 时，打印的都是age
+          // let item = helpText[i]; // let 时，正常--- let 在for循环中 每次都创建一个新的变量？
+          document.getElementById(item.id).onfocus = function(){
+            showHelp(item.help);
+            console.log(item, i);
+          }
+        }
+      }
+
+      setupHelp();
+  </script>
+  <script>
+      // function showHelp(help){
+      //   document.getElementById('help').innerHTML = help;
+      // }
+
+      // // 闭包
+      // function makeHelpCallback(help){
+      //     return function(){
+      //       showHelp(help);
+      //     }
+      // }
+
+      // function setupHelp(){
+      //   let helpText = [
+      //     {id:'email', help: 'your e-mail address'},
+      //     {id:'name', help: 'your full name'},
+      //     {id:'age', help: 'your age'},
+      //   ];
+
+      //   for (let i = 0; i < helpText.length; i++){
+      //     var item = helpText[i];
+      //     // makeHelpCallback每次循环，通过闭包将结果保存在内存中
+      //     document.getElementById(item.id).onfocus = makeHelpCallback(item.help + 'close...');
+      //   }
+      // }
+
+      // setupHelp();
+      </script>
+</body>
+</html>
