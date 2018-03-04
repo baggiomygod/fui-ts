@@ -82,6 +82,7 @@ export default class ScrollMenus extends Vue{
       .nav-item {
         line-height: 1rem;
         font-weight: 200;
+        text-align: center;
         // flex: 1;// flex-grow:1;flex-shrink:1;flex-basis:auto; 平均分配剩余空间
         flex: 0 0 25%;
         .active {

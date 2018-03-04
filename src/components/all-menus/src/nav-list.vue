@@ -37,6 +37,7 @@ export default class NavList extends Vue {
       line-height: 1rem;
       font-weight: 200; // flex: 0;// flex-grow:1(平均分配剩余空间);flex-shrink:1（如果空间不足项目缩小）;flex-basis:auto; 平均分配剩余空间
       flex: 0 0 20%; //flex-grow:0(有剩余空间也不放大)；flex-shrink:0（空间不足也不缩小） flex-basis:20%;项目占据的固定空间
+      text-align: center;
       .active {
         color: #fff;
         font-weight: 500;

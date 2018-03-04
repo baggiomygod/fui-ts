@@ -1,6 +1,6 @@
 function Compile (el, vm){
   this.vm = vm;
-  this.el = document.querySelector(el);
+  this.el = document.querySelector(el); // 获取实例挂载的元素
   this.fragment = null;
   this.init();
 }
@@ -9,12 +9,14 @@ Compile.prototype = {
   init() {
     if (this.el) {
       this.fragment = this.nodeToFragment(this.el);
+      // 编译元素
       this.compileElement(this.fragment);
       this.el.appendChild(this.fragment);
     } else {
       console.log('DOM元素不存在！');
     }
   },
+  // 创建fragment片段
   nodeToFragment(el) {
     let fragment = document.createDocumentFragment(); // 创建文本片段
     let child = el.firstChild;
@@ -25,6 +27,13 @@ Compile.prototype = {
     }
     return fragment;
   },
+  /**
+   * 判断：
+   * 元素节点：调用compile()
+   * 文本节点：直接显示
+   *
+   * @param {*} el
+   */
   compileElement(el){
     let childNodes = el.childNodes;
     [].slice.call(childNodes).forEach(node => {
@@ -46,6 +55,12 @@ Compile.prototype = {
       }
     })
   },
+  /**
+   * 如果是元素节点，截止元素的属性attributes和指令
+   *    - 事件指令：编译成事件, 调用compileEvent，对节点添加事件监听
+   *    - v-model: 调用compileModel,
+   * @param {*} node
+   */
   compile(node){
     // 元素节点的所有属性attributes
     let nodeAttrs = node.attributes;
@@ -84,7 +99,8 @@ Compile.prototype = {
     }
   },
   /**
-   * 双向数据绑定：v-model
+   * 双向数据绑定：v-model=“exp”
+   * 找到data中对应的值exp，实例化watcher,
    * @param {*} node  目标元素节点
    * @param {*} vm
    * @param {*} exp
@@ -93,6 +109,7 @@ Compile.prototype = {
   compileModel(node, vm, exp, dir){
     let val = this.vm[exp];
     this.modelUpdater(node, val);
+    // vm, exp, cb
     new Watcher(this.vm, exp, value => {
       this.modelUpdater(node, value);
     });

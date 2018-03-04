@@ -5,6 +5,7 @@ function Vue (options) {
   Object.keys(this.data).forEach(key => {
     this.proxKeys(key); // 代理
   });
+
  // 实例化时调用observe 实现监听data
   observe(this.data);
   new Compile(options.el, this);

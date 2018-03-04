@@ -12,6 +12,13 @@
 
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator'
+
+  // 定义一个接口
+  interface User {
+      name: string,
+      password: string
+  }
+
 @Component({})
 export default class Header extends Vue {
   @Prop({default: ''})
@@ -24,8 +31,21 @@ export default class Header extends Vue {
     let hash = window.location.hash;
     this.title = hash;
   }
+  // 获取localStorage数据
+  getLocalUserInfo(){
+      let testUser:User = JSON.parse(localStorage.getItem('userInfo'));
+      this.title = testUser.name
+  }
+  // 监听storage事件
+  listenLocalStorage(){
+    window.addEventListener('storage', e => {
+      this.getLocalUserInfo();
+    })
+  }
+
   mounted(){
     window.onhashchange = this.checkHashChange;
+    this.listenLocalStorage()
   }
 }
 </script>

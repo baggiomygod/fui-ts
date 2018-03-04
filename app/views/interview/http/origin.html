@@ -45,9 +45,8 @@
     let originUrl = 'http://localhost:8080/';
     let btnEl = document.getElementById('btn');
     btnEl.addEventListener('click', changeHash);
-
+    // 父页面设置iframe.src 加上hash
     function changeHash(){
-      console.log('sss');
       let i = 0;
       i++;
       let src = originUrl + '#/' + i;

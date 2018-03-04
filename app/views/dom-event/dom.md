@@ -60,3 +60,43 @@
   });
   element.dispatchEvent(eve);
 ```
+
+
+## 问题
+  ### 事件绑定和普通事件有什么区别
+    示例：on_addEvent.html
+    普通时间---el.onclick DOM0
+    事件绑定---el.addEventListener DOM2
+
+  ### document.ready和window.onload区别
+    jsvascript文档加载完成事件
+    - ready: 表示**文档结构**已经加载完成，**不含图片等非文字媒体文件**
+    - onload: 表示页面包**含图片等文件在内的多有元素**都加载完毕
+
+  jquery:
+    DOM加载完毕后就可以进行DOM操作，
+    域名解析--> 加载js/css-->加载图片等
+    > document.ready就是在加载js、css与加载图片等资源之间执行；
+    ```
+      $(function(){
+
+      });
+
+      // 等价于
+      $(document.ready)(function(){
+
+      })
+    ```
+
+    原生js:
+      ```
+        // 所有元素和图片等媒体资源加载完毕，才可进行DOM操作
+        window.onload = function(){
+
+        }
+
+        // 或者经常用到的图片
+        document.getElementById('imgId').onload = (){
+
+        }
+      ```

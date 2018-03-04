@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件绑定和普通事件</title>
+</head>
+<body>
+  <div id="normal-event">普通事件</div>
+  <div id="add-event">事件绑定</div>
+  <script>
+    let normalDiv = document.getElementById('normal-event');
+    let addLisDiv = document.getElementById('add-event');
+
+    // 普通事件不能添加多个事件
+    normalDiv.onclick = () => {
+      alert(1);
+    }
+    normalDiv.onclick = () => {
+      alert(2);
+    }
+
+    // 可以添加多个事件处理函数
+    addLisDiv.addEventListener('click', () => {
+      alert(3);
+    }, false)
+    addLisDiv.addEventListener('click', () => {
+      alert(4);
+    }, false)
+
+  </script>
+</body>
+</html>

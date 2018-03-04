@@ -1,9 +1,11 @@
 /**
  * Observer
  * 1. vue实例化时调用Observe
- * 2. 把所有data遍历一遍 然后调用Object.defineReactive
+ * 2. 把所有data遍历一遍, 调用this.defineReactive,
  *      1. 识别子对象是否嵌套-->Y--->递归
- *                        -->N--->定义对象：读取时(添加观察者列表)， 改变时（通知，并update）
+ *                      ---->N--->定义对象,调用Object.defineProperty：
+ *                                  - get:读取时(添加观察者列表Dep);---get时添加观察者
+ *                                  - set:改变时（通知，并update）
  *
  */
 
@@ -32,11 +34,10 @@ Observer.prototype = {
       configurable: true,
       // get时往Dep列表中添加观察者列表---为什么在get的时候添加观察者？
       get: function getter(){
-        debugger;
         console.log('2.defineReactive get. 添加观察者')
         // Dep.target是Watcher的实例对象(观察者实例)
         if (Dep.target) {
-          dep.addSub(Dep.target);
+          dep.addSub(Dep.target); // 每个观察者实例放入到观察者列表中
         }
         return val;
       },

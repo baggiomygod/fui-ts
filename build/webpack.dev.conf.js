@@ -88,6 +88,10 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
 
+      // 新版的webpack-dev-server出于安全考虑，默认检查hostname，如果hostname不是配置内的，将中断访问
+      // 解决 Invalid Host header (访问映射域名one.onephoneman.cc:8080时)
+      devWebpackConfig.devServer.disableHostCheck = true
+
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {

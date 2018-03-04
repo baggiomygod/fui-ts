@@ -1,5 +1,7 @@
 # promise
-所谓promise，就是一个对象，用来传递异步操作的消息。它代表某个未来才会知道结果的事件，并且这个事件提供统一的API，可供进一步处理
+promise是一个对象，用来传递异步操作的消息
+
+它代表某个未来才会知道结果的事件，并且这个事件提供统一的API，可供进一步处理
 ## 1. 概述
 ### 1.1 Promise对象特点
 1. 对象的状态不收外界影响。Promise对象代表一个异步操作，有三种状态：
@@ -12,7 +14,7 @@
 - Promise.resolve()
 - Promise.reject()
 - Promise.prototype.then()
-- Promise.prototype.cahch()
+- Promise.prototype.catch()
 - Promise.call()  //所有的完成
 - Promise.race() // 竞速，完成一个即可
 

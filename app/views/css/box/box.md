@@ -13,7 +13,7 @@
   ```
 
 ### 3. js如何获取盒模型的宽和高
-  1. dom.style.width/height---只能获取内联样式设置的款和高
+  1. dom.style.width/height---只能获取内联样式设置的宽和高
   2. dom.currentStyle.width/height---只支持IE，获取浏览器渲染后的宽和高
   3. window.getComputedStyle(dom).width/height---兼容性好
   4. dom.getBoundingClientStyle()---获取元素的绝对位置 top、left、width、height
