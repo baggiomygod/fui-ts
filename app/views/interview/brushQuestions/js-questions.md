@@ -83,8 +83,21 @@
       count; // 30
       fibCount; // 9
     ```
-
-  ### 2. 两数字之和
+    简化：
+    ```
+      const fibonacci = ((memo = [0, 1]) => {
+        const fib = (n) => {
+          let result = memo[n]
+          if (typeof result !== "number") {
+            result = fib(n - 1) + fib(n - 2)
+            memo[n] = result
+          }
+          return result
+        }
+        return fib
+    })()
+    ```
+  ### 2. 两数字之和---未完成
     https://leetcodechina.com/problems/two-sum/description/
 
     给定一个整数数列，找出其中和为特定值的那两个数。
@@ -144,3 +157,26 @@
           let match = str.match(strRE); // ['']
         }
       ```
+      实例2
+        - ^ : 1. 表示字符串的开始位置 /^a/, 以a开始
+        - ^ : 2. 如果在方括号中，表示不接受该字符集，[^:\.]，不包括':', '.';
+        ```
+          const extractStr = (str) => {
+            const ret = str.match(/:([^:\.])*?\./g) || []
+            return ret.map((subStr) => subStr.replace(/[:\.]/g, ''))
+          }
+        ```
+    ### 4. safeGet
+      题目：有时候我们需要访问一个对象较深的层次，但是如果这个对象某个属性不存在的话就会报错，例如：
+        ```
+          var data = { a: { b: { c: 'ScriptOJ' } } }
+          data.a.b.c // => scriptoj
+          data.a.b.c.d // => 报错，代码停止执行
+          console.log('ScriptOJ') // => 不会被执行
+        ```
+      实现1：
+        ```
+          const safeGet = (obj, path) => {
+
+          }
+        ```

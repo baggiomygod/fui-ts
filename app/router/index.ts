@@ -21,6 +21,7 @@ import TBGridLayout from 'views/css/layout-row/5_top-bottom-grid.vue'
 
 // interview
 import InterView from 'views/interview/interview.vue'
+import Socket from 'views/socket/socket.vue'
 Vue.use(Router)
 
 const routes = [
@@ -59,7 +60,8 @@ const routes = [
         ]
       }
     ]
-  }
+  },
+  { path: '/socket', component: Socket, name: 'socket' }
 ]
 
 export default new Router({ routes })

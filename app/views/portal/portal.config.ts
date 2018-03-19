@@ -5,6 +5,7 @@ export default {
     { 'menu_name': 'css', 'url': '/css' },
     { 'menu_name': 'vue2', 'url': '/vue2' },
     { 'menu_name': 'interview', 'url': '/interview' },
+    { 'menu_name': 'socket', 'url': 'socket' },
     { 'menu_name': 'pwa', 'url': '/pwa' },
     { 'menu_name': 'flex', 'url': '/flex' },
     { 'menu_name': 'd3.js', 'url': '/d3js' },

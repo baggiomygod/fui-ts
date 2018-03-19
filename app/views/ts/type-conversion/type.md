@@ -37,7 +37,7 @@ ES6中定义了7中数据类型：
 
       2. valueOf()-->复合类型--->toString()-->Number():如果valueOf方法返回复合类型的值，再调用对象自身的toString方法，如果toStrinf方法返回原始类型的值，则对改制使用Number()方法
 
-      3. valueOf()-->复合类型--->toString()-->报错：如果toString方法返回的是符合类型的值---报错
+      3. valueOf()-->复合类型--->toString()-->报错：如果toString方法返回的是复合类型的值---报错
 
       ```
       let a = {a:1};

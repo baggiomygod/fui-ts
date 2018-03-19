@@ -85,3 +85,52 @@
     - 浏览器： 浏览器提供的对象就是宿主对象
         BOM DOM
 
+  ### ==(有类型转换) 与 ===(值和类型必须相等) 的区别
+   ==： 两边类型不同时，会先转换
+   === : 不做类型转换，类型不同的一定不等;（即，值和类型都必须相等）
+
+    ```
+      1 == '1'; // true
+      0 == false; // true
+      null == undefined; // true
+
+      1 != '1'; // false
+      1 !== '1'; // true
+      0 != ''; // false
+      0 !== ''; // true
+
+
+    ```
+
+  ### null 与 undefined的区别
+    null : Null类型，代表空值，使用typeof null ; object,可以认为是一个特殊的对象。
+
+    undefined: undefined类型，当一个变量声明了，但未被初始化时为undefined
+
+    相似性：
+      !null/!undefined --- true;
+      null == undefined; // true
+
+    不同
+      **Null**是一个标识“无”的对象，转为数值为0，
+      **undefined**是一个表示“无”的原始值，转为数值为NaN
+      Number(null); // 0
+      Number(undefined); // NaN
+
+    - null,表示“没有对象”，即该处不该有值
+    - undefined,表示“缺少值”，就是此处应该有一个值，但是还没有定义。
+
+  ### typeof obj === 'object'有什么问题如何避免
+    存在```typeof null ; //object```;
+    要准确的判断一个变量是否是一个对象，可以使用constructor和instanceof。
+    - instanceof
+    ```
+      let o = {}
+      o instanceof Object ; // true
+    ```
+
+  ### var arr = [[[]]]的含义？
+    声明一个二维数组
+
+
+  ### css 有哪些选择器
