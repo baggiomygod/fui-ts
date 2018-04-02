@@ -14,6 +14,7 @@ declare module 'vue/types/vue' {
     $route: Route,
     $http: any,
     style: object,
+    BMap: any
   }
 }
 

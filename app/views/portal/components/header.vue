@@ -29,7 +29,10 @@ export default class Header extends Vue {
   */
   checkHashChange(){
     let hash = window.location.hash;
-    this.title = hash;
+    if (/^#\//.test(hash)) {
+      hash = hash.substring(2)
+    }
+    this.$emit('change-title', hash)
   }
   // 获取localStorage数据
   getLocalUserInfo(){

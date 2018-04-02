@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>hide</title>
+  <style>
+    #vis-hide {
+      visibility: visible;
+      height: 10px;
+    }
+    #dis-hide {
+      display: block;
+      height: 10px;
+    }
+    .child-vis {
+      visibility: visible;
+    }
+    .child-blo {
+      display: inline-block;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="vis-hide">
+      visibility
+      <span class="child-vis">1</span>
+      <span>2</span>
+      <span>3</span>
+    </div>
+    <p>visibility</p>
+    <button id="v-btn">visibile</button>
+  </div>
+
+  <div>
+      <div id="dis-hide">
+        visibility
+        <span class="child-blo">1</span>
+        <span>2</span>
+        <span>3</span>
+      </div>
+      <p>display</p>
+      <button id="d-btn">display</button>
+    </div>
+<script>
+let vBtn = document.getElementById('vis-hide');
+let dBtn = document.getElementById('dis-hide');
+  
+</script>
+</body>
+
+</html>

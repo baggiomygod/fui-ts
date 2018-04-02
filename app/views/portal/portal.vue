@@ -1,6 +1,6 @@
 <template>
   <div class="portal-wrap">
-  <f-header :title="propsHeader"></f-header>
+  <f-header :title="propsHeader" @change-title="changeTitle"></f-header>
   <f-scroll-menus v-if="!showAllMenus"
                     :config="menusConfig"
                     @change-title="changeTitle"
@@ -45,5 +45,4 @@ export default class Portal extends Vue {
 </script>
 <style lang="scss">
 @import '../../commons/style/transition/fade.scss';
-
 </style>

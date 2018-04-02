@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
-import { setTimeout } from 'timers';
+import { setTimeout } from 'timers'
 
 @Component({})
 export default class Socket extends Vue {
@@ -45,10 +45,10 @@ export default class Socket extends Vue {
   initWebSocket():void{
     // ws 地址
     const ECHO_URI = 'ws://echo.websocket.org'
-    const LOCAL_URI = 'ws://localhost:3000/node-socket/fuiapi/websocket'
+    const LOCAL_URI = 'ws://localhost:3000/nodews/fui/socket'
 
-    // this.websocket = new WebSocket(ECHO_URI)
-    this.websocket = new WebSocket(LOCAL_URI)
+    this.websocket = new WebSocket(ECHO_URI)
+    // this.websocket = new WebSocket(LOCAL_URI)
     this.websocket.onopen = this.websocketOnopen;
     this.websocket.onmessage = this.websocketOnmessage
     this.websocket.onclose = this.websocketClose
