@@ -1,3 +1,7 @@
+/**
+ * 异步引入百度地图，并promise化
+ * @param {*} ak 
+ */
 export function MP(ak) {
   return new Promise((resolve, reject) => {
     window.init = function () {
