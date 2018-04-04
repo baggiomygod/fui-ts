@@ -77,7 +77,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      chunks:['mainfest', 'vendor', 'app']
+      chunks:['manifest', 'vendor', 'app']
     }),
     // 其中filename引用的是\config\index.js里的build，每个页面都要配置一个chunks，不然会加载所有页面的资源。
     new HtmlWebpackPlugin({

@@ -6,28 +6,29 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { MP } from "./map";
+import { Vue, Component } from "vue-property-decorator"
+import { MP } from "./map"
+const AK:String = 'n37hDGi4q9vXYoGq9LrawykWffibwYpc'
+let map:any = {}
+let BMap:any = {}
 
 @Component({})
 export default class Map extends Vue {
-  x: Number = 116.491;
-  y: Number = 31.233;
+  x: Number = 116.331398;
+  y: Number = 39.89744;
+
   getLocation(){
-    console.log('1.检查是否支持位置信息...')
-    alert('1.检查是否支持位置信息...')
-    if (navigator.geolocation) {
-      console.log('2.正在获取位置信息...')
-      alert('2.正在获取位置信息...')
+    if (navigator.geolocation) { // 原生API获取定位
       navigator.geolocation.getCurrentPosition(this.posSuccess, this.posErr, {
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 3000,
         maximumAge: 0
       })
     } else {
       alert('你的浏览器不支持获取地理位置')
     }
   }
+  
   posSuccess(pos){
     console.log('获取位置成功:', pos)
     alert(pos.coords.longitude)
@@ -39,8 +40,6 @@ export default class Map extends Vue {
 
   posErr(err){
     console.log('获取位置失败:', err)
-    alert(`获取位置失败: ${err.code}`)
-
     switch(err.code) {
       case err.TIMEOUT:
           console.log('连接超时，请重试')
@@ -54,16 +53,54 @@ export default class Map extends Vue {
       default:
         break;
     }
+    // 如果原生获取地理位置失败，调用百度地图接口获取当前城市
+    this.getCurrCity();
+    
   }
-
+  // 根据IP获取地理位置---获取的位置不准
+  locationByIp(){
+    this.$http.jsonp(`https://api.map.baidu.com/location/ip`,{
+      params:{
+        ak:AK,
+        coor:'bd09l'
+        }  
+    }).then(res => {
+      let point = res.data.content.point
+      this.x = point.x;
+      this.y = point.y;
+      let currPoint = new BMap.Point(this.x, this.y);
+      let mk = new BMap.Marker(currPoint);
+      map.addOverlay(mk);
+      let label = new BMap.Label(`x:${this.x}, y:${this.y}`);
+      mk.setLabel(label)
+      map.setCenter(new BMap.Point(currPoint), 12);
+    })
+  }
+  // 百度API获取当前城市
+  getCurrCity(){
+    let currCity = new BMap.LocalCity()
+    currCity.get(this.localCity)
+  }
+  // 定位到当前城市
+  localCity(result){
+    let cityName = result.name;
+    map.setCenter(cityName);
+    alert(`当前城市是${cityName}`);
+  }
   mounted() {
     console.log("初始化地图...")
-    this.getLocation();
-
     this.$nextTick(() => {
-      MP("n37hDGi4q9vXYoGq9LrawykWffibwYpc").then(BMap => {
-        let map = new BMap.Map("v-map");
-        map.centerAndZoom(new BMap.Point(this.x, this.y), 11);
+      MP(AK).then(BM => {
+        BMap = BM
+        this.getLocation()
+        map = new BMap.Map("v-map")
+        let initPoint = new BMap.Point(this.x, this.y);
+        let mk = new BMap.Marker(initPoint);
+        map.addOverlay(mk);
+        let label = new BMap.Label(`x:${this.x}, y:${this.y}`);
+        mk.setLabel(label);
+        map.centerAndZoom(new BMap.Point(this.x, this.y), 12)
+        
       });
     });
 
