@@ -28,7 +28,7 @@ export default class Map extends Vue {
       alert('你的浏览器不支持获取地理位置')
     }
   }
-  
+
   posSuccess(pos){
     console.log('获取位置成功:', pos)
     alert(pos.coords.longitude)
@@ -55,7 +55,7 @@ export default class Map extends Vue {
     }
     // 如果原生获取地理位置失败，调用百度地图接口获取当前城市
     this.getCurrCity();
-    
+
   }
   // 根据IP获取地理位置---获取的位置不准
   locationByIp(){
@@ -63,7 +63,7 @@ export default class Map extends Vue {
       params:{
         ak:AK,
         coor:'bd09l'
-        }  
+        }
     }).then(res => {
       let point = res.data.content.point
       this.x = point.x;
@@ -100,7 +100,7 @@ export default class Map extends Vue {
         let label = new BMap.Label(`x:${this.x}, y:${this.y}`);
         mk.setLabel(label);
         map.centerAndZoom(new BMap.Point(this.x, this.y), 12)
-        
+
       });
     });
 
