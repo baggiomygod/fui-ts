@@ -8,6 +8,7 @@ export default {
     { 'menu_name': 'map', 'url': '/map' },
     { 'menu_name': 'socket', 'url': 'socket' },
     { 'menu_name': 'socket-io', 'url': 'socket-io' },
+    { 'menu_name': 'http', 'url': 'http' },
     { 'menu_name': 'pwa', 'url': '/pwa' },
     { 'menu_name': 'flex', 'url': '/flex' },
     { 'menu_name': 'd3.js', 'url': '/d3js' },

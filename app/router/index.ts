@@ -24,6 +24,10 @@ import InterView from 'views/interview/interview.vue'
 import Socket from 'views/socket/socket.vue'
 import SocketIO from 'views/socket/socket.io.vue'
 import VMap from 'views/map/map.vue'
+
+// http
+import HttpDemo from 'views/http/ipst-http-demo.vue'
+
 Vue.use(Router)
 
 const routes = [
@@ -35,6 +39,10 @@ const routes = [
       { path: 'css-box', name: 'css-box', component: CssBox },
       { path: 'css-bfc', name: 'css-bfc', component: CssBfc }
     ]
+  },
+  {
+    path: '/http', name: 'HttpDemo', component: HttpDemo,
+    children: []
   },
   {
     path: '/ts-list', name: 'ts-list', component: TsList,
