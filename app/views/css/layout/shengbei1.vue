@@ -33,10 +33,12 @@
       height: 200px;
       float: left;
     }
+
     .l-main {
       width: 100%;
       background-color: #eee;
     }
+    
     .l-left {
       width: 2.5rem;
       margin-left: -2.5rem;

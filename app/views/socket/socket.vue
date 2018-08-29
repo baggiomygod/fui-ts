@@ -14,7 +14,7 @@ import { setTimeout } from 'timers'
 export default class Socket extends Vue {
   // data
   websocket: any = null
-  echo: string = ''
+  echo: string = 'ppp'
   response: string = ''
   isOpen: boolean = false
   // methods
@@ -25,16 +25,20 @@ export default class Socket extends Vue {
 
     // 若ws开启状态
     if (this.websocket.readyState === this.websocket.OPEN) {
+      console.log('threadPoxl open')
       this.websocketSend();
     }
     // 若ws正在开启状态，则等待200ms
     else if (this.websocket.readyState === this.websocket.CONNECTING) {
+      console.log('threadPoxl opening')
+
       setTimeout(() => {
         this.websocketSend()
-      }, 300);
+      }, 200);
     }
     // 若未开启， 则等待500ms
     else {
+      console.log('threadPoxl closed')
       this.initWebSocket()
       setTimeout(() => {
         this.websocketSend()
@@ -47,8 +51,8 @@ export default class Socket extends Vue {
     const ECHO_URI = 'ws://echo.websocket.org'
     const LOCAL_URI = 'ws://localhost:3000/nodews/fui/socket'
 
-    this.websocket = new WebSocket(ECHO_URI)
-    // this.websocket = new WebSocket(LOCAL_URI)
+    // this.websocket = new WebSocket(ECHO_URI)
+    this.websocket = new WebSocket(LOCAL_URI)
     this.websocket.onopen = this.websocketOnopen;
     this.websocket.onmessage = this.websocketOnmessage
     this.websocket.onclose = this.websocketClose
@@ -75,7 +79,7 @@ export default class Socket extends Vue {
 
   // created
   created(){
-    this.initWebSocket();
+    // this.initWebSocket();
   }
 }
 </script>
